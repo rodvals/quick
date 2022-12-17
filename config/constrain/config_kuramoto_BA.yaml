@@ -1,0 +1,54 @@
+model:
+  name: SR3
+  constrained: True
+  threshold: 0.001
+  max_iter: 30
+  verbose: False
+  library_functions: sin
+  bagging: False 
+  n_models: 100
+  library_ensemble: False 
+
+dynamics_name: kuramoto
+
+simulations:
+  dt_train: 0.0001
+  t_max_train: 10
+  N_simulations_train: 1
+  N_simulations_train_max: 20000
+  dt_test: 0.001
+  t_max_test: 10
+  N_simulations_test: 1
+  N_simulations_test_max: 20000
+  number_train_different_q0: 30
+  filename_initial_conditions_training:  
+    - "train/16-q0_training.csv" 
+  filename_initial_conditions_testing:  
+    - "test/16-q0_testing.csv" 
+  filename_parameters:  
+    - "param/16-par_K_1-1.csv"
+  transient: True
+  synchronized: True
+  
+
+networks:
+  topology: 'BA'
+  directory: './../../networks'
+  N_nodes: 
+    - 16
+  N_config: 1
+  start_scan: 2
+  end_scan: 2
+  d_scan: 1
+
+processing:
+  integrate_sindy_equations: True
+  skip_dynamics_with_warning: True
+  debug: False
+  write_output: True
+  filename_output: './output/16-BA-1-K_1-kuramoto_full_c_qualitative_full.csv'
+  save_all: True 
+  replicable: True
+    #  filename_output: './output/16-BA-1-200-K_1-kuramoto_less_no_c.csv'
+  timeout_integration: 30
+  timeout_max_value: 63
